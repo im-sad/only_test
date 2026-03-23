@@ -1,5 +1,6 @@
 import Swiper from 'swiper'
 import { addLeadingZero } from '@helpers/string-helpers'
+import { TPeriodFields } from '@data/types'
 
 const circleShortestPath = (currentDeg: number, baseTargetDeg: number): number => {
   return baseTargetDeg + 360 * Math.round((currentDeg - baseTargetDeg) / 360)
@@ -7,6 +8,20 @@ const circleShortestPath = (currentDeg: number, baseTargetDeg: number): number =
 
 const parseYearText = (el: Element | null): number | null => {
   return el ? parseInt(el.textContent?.replace(/\s/g, ''), 10) : null
+}
+
+function readPeriodFields(slide: HTMLElement): TPeriodFields | null {
+  const fromEl = slide.querySelector<HTMLElement>('[data-slider="from"]')
+  const toEl = slide.querySelector<HTMLElement>('[data-slider="to"]')
+
+  if (!fromEl || !toEl) return null
+
+  const from = parseYearText(fromEl)
+  const to = parseYearText(toEl)
+
+  if (from === null || to === null) return null
+
+  return { from, to, fromEl, toEl }
 }
 
 const setDotsPosition = (points: NodeListOf<HTMLElement>, deg: number = 0) => {
@@ -53,6 +68,7 @@ const setActiveDates = (swiper: Swiper): void => {
 export {
   circleShortestPath,
   parseYearText,
+  readPeriodFields,
   setActiveDates,
   setDotsPosition,
   setProgress

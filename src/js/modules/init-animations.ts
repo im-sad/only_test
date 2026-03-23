@@ -1,4 +1,3 @@
-import { animationStagger } from '@animations/animation-stagger'
 import { isIPhone12OrOlder } from '@utils/ios-checker'
 
 export const initAnimations = () => {
@@ -8,5 +7,4 @@ export const initAnimations = () => {
   }
 
   document.documentElement.classList.add('is-ready')
-  animationStagger()
 }

@@ -1,11 +1,12 @@
 import Swiper from 'swiper'
-import { Navigation, Pagination, EffectCreative, FreeMode } from 'swiper/modules'
-import { circleShortestPath, parseYearText, setActiveDates, setDotsPosition, setProgress } from '@helpers/slider-helpers'
 import gsap from 'gsap'
+import { Navigation, Pagination, EffectCreative, FreeMode } from 'swiper/modules'
+import { circleShortestPath,setActiveDates, setDotsPosition, setProgress, readPeriodFields } from '@helpers/slider-helpers'
+import { COUNTER_DURATION, MEDIA_BREAKPOINTS } from '@data/vars'
+import { HTMLElementOrNull } from '@data/types'
 
-type HTMLElementOrNull = HTMLElement | null
-export const initCarousels = () => {
-  const historySections:  NodeListOf<HTMLElement> = document.querySelectorAll('.js-history-section:not(.is-init)')
+export const initHistorySections = () => {
+  const historySections:  NodeListOf<HTMLElement> = document.querySelectorAll('.js-history-section')
 
   historySections.forEach((section) => {
     const periodBlock: HTMLElement | null = section.querySelector('[data-slider="period"]')
@@ -70,54 +71,18 @@ export const initCarousels = () => {
           setProgress(swiper)
         },
         slideChange: (swiper: Swiper) => {
+          const { previousIndex, activeIndex, slides } = swiper
+
           setActiveDates(swiper)
           setActiveDot(swiper.activeIndex)
           setProgress(swiper)
 
-          const counterState = { fromYear: 0, toYear: 0 }
-          const prevIndex = swiper.previousIndex
-          const activeIndex = swiper.activeIndex
-          if (prevIndex < 0 || prevIndex === activeIndex) return
+          if (previousIndex < 0 || previousIndex === activeIndex) return
 
-          const prevSlide = swiper.slides[prevIndex] as HTMLElement
-          const currentSlide = swiper.slides[activeIndex] as HTMLElement
-          const fromEl = currentSlide.querySelector('[data-slider="from"]')
-          const toEl = currentSlide.querySelector('[data-slider="to"]')
-          const prevFromEl = prevSlide.querySelector('[data-slider="from"]')
-          const prevToEl = prevSlide.querySelector('[data-slider="to"]')
-
-          const endFrom = parseYearText(fromEl)
-          const endTo = parseYearText(toEl)
-          const startFrom = parseYearText(prevFromEl)
-          const startTo = parseYearText(prevToEl)
-
-          if (
-            endFrom === null ||
-            endTo === null ||
-            startFrom === null ||
-            startTo === null ||
-            !fromEl ||
-            !toEl
-          ) {
-            return
-          }
-
-          gsap.killTweensOf(counterState)
-          counterState.fromYear = startFrom
-          counterState.toYear = startTo
-          fromEl.textContent = String(startFrom)
-          toEl.textContent = String(startTo)
-
-          gsap.to(counterState, {
-            fromYear: endFrom,
-            toYear: endTo,
-            duration: 0.85,
-            ease: 'power2.out',
-            onUpdate: () => {
-              fromEl.textContent = String(Math.round(counterState.fromYear))
-              toEl.textContent = String(Math.round(counterState.toYear))
-            }
-          })
+          tweenPeriod(
+            slides[previousIndex] as HTMLElement,
+            slides[activeIndex] as HTMLElement
+          )
         }
       }
     })
@@ -148,11 +113,35 @@ export const initCarousels = () => {
         observer: true,
         observeParents: true,
         breakpoints: {
-          768: {
+          [MEDIA_BREAKPOINTS.MD]: {
             spaceBetween: 80
           }
         }
       })
+    })
+  }
+
+  function tweenPeriod(prevSlide: HTMLElement, currentSlide: HTMLElement) {
+    const start = readPeriodFields(prevSlide)
+    const end = readPeriodFields(currentSlide)
+
+    if (!start || !end) return
+
+    const state = { fromYear: start.from, toYear: start.to }
+    gsap.killTweensOf(state)
+
+    end.fromEl.textContent = String(start.from)
+    end.toEl.textContent = String(start.to)
+
+    gsap.to(state, {
+      fromYear: end.from,
+      toYear: end.to,
+      duration: COUNTER_DURATION,
+      ease: 'power2.out',
+      onUpdate: () => {
+        end.fromEl.textContent = String(Math.round(state.fromYear))
+        end.toEl.textContent = String(Math.round(state.toYear))
+      }
     })
   }
 }
