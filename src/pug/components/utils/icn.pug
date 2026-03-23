@@ -1,0 +1,17 @@
+mixin icn(props = {})
+
+  -
+    const name = props.name || ''
+    const width = props.width || 16
+    const height = props.height || width
+    const size = props.size
+
+  svg.icn(
+    class=props.hasFill && 'icn--fill'
+    width=size || width
+    height=size || height
+    aria-hidden="true"
+    role="img"
+    focusable="false"
+  )&attributes(attributes)
+    use(href="#" + name)

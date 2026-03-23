@@ -1,0 +1,14 @@
+$pt-sans: 'pt-sans';
+
+@font-face {
+  font-family: 'PT Sans';
+  src:
+    local('PT Sans'),
+    url('#{$url-font}/#{$pt-sans}/font.woff2') format('woff2'),
+    url('#{$url-font}/#{$pt-sans}/font.woff') format('woff'),
+    url('#{$url-font}/#{$pt-sans}/font.ttf') format('truetype');
+
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

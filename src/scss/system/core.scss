@@ -1,0 +1,71 @@
+@use '@scss/system/functions' as f;
+@use '@scss/system/vars' as v;
+
+:root {
+  --width: #{rem($width)};
+  --scale-vw: calc(#{f.strip-unit(v.$media-fullhd)} / 100);
+
+  --font-family: #{v.$font-family};
+  --font-title-family: #{v.$font-title-family};
+  --font-size: #{rem(v.$font-base-size)};
+  --font-lh: #{v.$font-base-lh};
+
+  @each $name, $value in v.$colors {
+    --color-#{$name}: #{$value};
+  }
+
+  @each $name, $value in v.$space {
+    --space-#{$name}: #{rem($value)};
+  }
+
+  @each $name, $value in v.$trans {
+    --trans-#{$name}: #{$value};
+  }
+
+  @each $name, $value in v.$field {
+    --field-#{$name}: #{$value};
+  }
+
+  @each $name, $shadow in v.$shadows {
+    --shadow-#{$name}: #{$shadow};
+  }
+
+  @each $name, $z in v.$zindex {
+    --z-#{$name}: #{$z};
+  }
+
+  // MEDIA
+  @include media(quadhd) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-quadhd)} / 100);
+  }
+
+  @include media(hd) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-hd)} / 100);
+  }
+
+  @include media(desktop) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-desktop)} / 100);
+  }
+
+  @include media(notebook) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-notebook)} / 100);
+  }
+
+  @include media(tablet) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-tablet)} / 100);
+  }
+
+  @include media(smartphone) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-smartphone)} / 100);
+  }
+
+  @include media(phone) {
+    --scale-vw: calc(#{f.strip-unit(v.$media-phone)} / 100);
+  }
+}
+
+.noscript {
+  background: #f00;
+  color: #808080;
+  text-align: center;
+}

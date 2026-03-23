@@ -1,0 +1,117 @@
+.arrow-btn {
+  box-sizing: border-box;
+  position: relative;
+  bottom: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  vertical-align: middle;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid transparent;
+  max-width: 100%;
+  padding: 0;
+  opacity: 1;
+  transition: border var(--trans-base), background var(--trans-base), color var(--trans-base), opacity var(--trans-base), box-shadow var(--trans-base);
+  text-overflow: ellipsis;
+  user-select: none;
+  border-radius: 50%;
+
+  &:focus {
+    outline: none;
+  }
+
+  // states
+  &:hover:not(:disabled),
+  &:hover:not(.is-disabled) {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &.is-invert .icn {
+    transform: scaleX(-1);
+  }
+
+  &__icn-mob {
+    display: none;
+  }
+
+  // var
+  &--var-primary {
+    background: var(--color-page);
+    border-color: rgba(color('black-blue'), 0.5);
+    color: var(--color-black-blue);
+
+    &:hover:not(:disabled),
+    &:hover:not(.is-disabled) {
+      background: var(--color-white);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default !important;
+    }
+  }
+
+  &--var-secondary {
+    background: var(--color-white);
+    color: var(--color-blue);
+    box-shadow: 0 0 15px rgba(color('blue'), 0.1);
+
+    &:hover:not(:disabled),
+    &:hover:not(.is-disabled) {
+      box-shadow: 0 0 15px rgba(color('blue'), 0.3);
+    }
+  }
+
+  // sizes
+  &--size-sm {
+    height: var(--field-sm);
+    width: var(--field-sm);
+
+    .icn {
+      width: 7px;
+      height: 11px;
+    }
+  }
+
+  &--size-sm:not(.is-invert) .icn {
+    translate: 1px 0;
+  }
+
+  &--size-sm.is-invert .icn {
+    translate: -1px 0;
+  }
+
+  &--size-md {
+    height: var(--field-md);
+    width: var(--field-md);
+  }
+
+  &--size-md:not(.is-invert) .icn {
+    translate: 2px 0;
+  }
+
+  &--size-md.is-invert .icn {
+    translate: -2px 0;
+  }
+
+  @include media(tablet-after) {
+    &__icn {
+      display: none;
+    }
+
+    &__icn-mob {
+      display: inline-block;
+    }
+
+    &--size-md:not(.is-invert) &__icn-mob {
+      translate: 1px 0;
+    }
+
+    &--size-md.is-invert &__icn-mob {
+      translate: -1px 0;
+    }
+  }
+}

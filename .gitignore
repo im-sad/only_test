@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+build
+dist
+dist-ssr
+src/pug/components/_auto-import.pug
+node_modules
+*.local
+*.ai
+*.log
+*.psd
+*.zip
+*.rar
+*.mp4
+*.mov
+*.sublime*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db

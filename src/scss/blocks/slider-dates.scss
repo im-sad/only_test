@@ -1,0 +1,82 @@
+.slider-dates {
+  &__prev,
+  &__next {
+    position: absolute;
+    top: rem(41);
+    flex: 0 0 auto;
+    z-index: 2;
+
+    &[disabled] {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__prev {
+    left: calc(#{rem(-20)});
+    translate: -100% 0;
+  }
+
+  &__next {
+    right: calc(#{rem(-20)});
+    translate: 100% 0;
+  }
+
+  &__item {
+    width: rem(320);
+    // padding-inline: rem(40);
+    user-select: none;
+
+    &:nth-child(2) {
+      width: rem(400);
+    }
+  }
+
+  &__title {
+    @include textStrong;
+    display: block;
+    margin-bottom: rem(15);
+    color: var(--color-blue);
+  }
+
+  &__text {
+    @include textBase;
+    color: var(--color-black-blue);
+  }
+
+  // MEDIA
+  @include media(hd-after) {
+    &__item,
+    &__item:nth-child(2) {
+      width: rem(260);
+    }
+  }
+
+  @include media(tablet-after) {
+    &__prev,
+    &__next {
+      display: none;
+    }
+  }
+
+  @include media(tablet-after) {
+    overflow: visible;
+
+    &__item,
+    &__item:nth-child(2) {
+      width: rem(166);
+
+      // &:not(.swiper-slide-active) {
+      //   opacity: 0.4;
+      // }
+    }
+
+    &__title {
+      font-size: rem(16);
+    }
+
+    &__text {
+      font-size: rem(14);
+    }
+  }
+}

@@ -1,0 +1,53 @@
+mixin hero-section(props = {})
+
+  section.hero-section&attributes(attributes)
+    .width
+
+      .hero-section__core.js-history-section
+        if props.title
+          .hero-section__head
+            h1.hero-section__title!=props.title
+
+        .hero-section__content
+          .hero-section__period.swiper(data-slider="period")
+            .swiper-wrapper
+              each item in props.items || []
+                .hero-section__period-item.swiper-slide
+                  span.hero-section__period-from(data-slider="from")!=item.start
+                  span.hero-section__period-to(data-slider="to")!=item.end
+
+          .hero-section__circle(data-slider="circle")
+            each item, index in props.items || []
+              +history-point({ index: index, title: item.title })
+
+        // controls
+        .hero-section__controls
+          .hero-section__controls-num(data-slider="progress")
+          .hero-section__controls-dots.swiper-pagination
+          .hero-section__controls-arrows
+            +arrow-btn({
+              isInvert: true,
+              hasMob: true,
+              var: 'primary',
+              size: 'md'
+            })(
+              data-swiper-prev="period"
+              type="button"
+              aria-label="Предыдущий период"
+              hasMob=true
+            ).hero-section__prev
+            +arrow-btn({
+              hasMob: true,
+              var: 'primary',
+              size: 'md'
+            })(
+              data-swiper-next="period"
+              type="button"
+              aria-label="Следующий период"
+              disabled
+            ).hero-section__next
+
+        .hero-section__sliders(data-slider="dates")
+          each item, index in categoriesData || []
+            .hero-section__sliders-item
+              +slider-dates({ list: item.list })

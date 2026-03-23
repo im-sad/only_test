@@ -1,0 +1,19 @@
+mixin arrow-btn(props = {})
+
+  button(
+    type="button"
+    class=props.var && `arrow-btn--var-${props.var}`
+    class=props.size && `arrow-btn--size-${props.size}`
+    class=props.isInvert && 'is-invert'
+  ).arrow-btn&attributes(attributes)
+    +icn({
+      name: props.size === 'md' ? 'icn-arrow' : 'icn-arrow-small',
+      width: props.size === 'md' ? 9 : 5,
+      height: props.size === 'md' ? 14 : 10
+    }).arrow-btn__icn
+    if props.hasMob
+      +icn({
+        name: 'icn-arrow-mob',
+        width: 6,
+        height: 8
+      }).arrow-btn__icn-mob

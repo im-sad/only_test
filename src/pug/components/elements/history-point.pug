@@ -1,0 +1,8 @@
+mixin history-point(props = {})
+
+  .history-point(
+    class=props.index === 0 && 'is-active'
+    data-slider="dot"
+  )&attributes(attributes)
+    span.history-point__num!=props.index + 1
+    span.history-point__text!=props.title

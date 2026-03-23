@@ -1,0 +1,25 @@
+mixin select(props = {})
+  -
+    const variant = props.var && `select--var-${props.var}`
+    const size = props.size && `select--size-${props.size}`
+    const mod = props.mod && `select--${props.mod}`
+
+  select.select(
+    name=props.name
+    value=props.value
+    class=variant
+    class=size
+    class=mod
+    disabled=props.isDisabled
+    required=props.isRequired
+  )&attributes(attributes)
+    if props.placeholder
+      option(value="" selected disabled).select__placeholder=props.placeholder
+
+    each item in props.items || []
+      option(
+        value=item.value
+        label=item.label
+        selected=item.isSelected
+        disabled=item.isDisabled
+      )=item.title

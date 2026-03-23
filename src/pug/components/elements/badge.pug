@@ -1,0 +1,7 @@
+mixin badge(props = {})
+
+  span.badge(
+    class=props.var && `badge--var-${props.var}`
+    class=props.size && `badge--size-${props.size}`
+  )
+    block

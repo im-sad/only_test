@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: dvh(100);
+
+  &__core {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+}

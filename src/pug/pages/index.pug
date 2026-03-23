@@ -1,0 +1,9 @@
+extends ../components/layouts/main-layout
+
+block variables
+  -
+    title = 'Главная'
+
+block main
+  +hero-section({ items: categoriesData, title: 'Исторические даты' })
+  //- +hero-section({ items: categoriesData, title: 'Исторические даты' })

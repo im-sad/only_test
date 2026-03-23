@@ -1,0 +1,27 @@
+mixin slider-dates(props = {})
+
+  .slider-dates.swiper(data-timeline)&attributes(attributes)
+    .slider-dates__wrapper.swiper-wrapper
+      each item in props.list || []
+        .slider-dates__item.swiper-slide
+          strong.slider-dates__title=item.title
+          p.slider-dates__text=item.text
+
+  // controls
+  +arrow-btn({
+    isInvert: true,
+    var: 'secondary',
+    size: 'sm'
+  })(
+    data-swiper-prev="timeline"
+    type="button"
+    aria-label="Назад"
+  ).slider-dates__prev
+  +arrow-btn({
+    var: 'secondary',
+    size: 'sm'
+  })(
+    data-swiper-next="timeline"
+    type="button"
+    aria-label="Вперёд"
+  ).slider-dates__next

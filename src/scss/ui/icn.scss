@@ -1,0 +1,10 @@
+.icn {
+  display: inline-block;
+  fill: transparent;
+  flex: 0 0 auto;
+  user-select: none;
+
+  &--fill {
+    fill: currentColor;
+  }
+}

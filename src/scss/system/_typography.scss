@@ -1,0 +1,28 @@
+@use '@scss/system/functions' as f;
+@use '@scss/system/mix' as m;
+
+// Titles
+@mixin titleH1 {
+  // font-size: clamp(f.rem(32), f.size(35), f.rem(40));
+  font-size: rem(200);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+// Text
+@mixin textStrong {
+  font-family: var(--font-title-family);
+  font-size: rem(25);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@mixin textBase {
+  @include m.font-size(20px, 30px);
+}
+
+// UI
+@mixin btn-base {
+  @include m.font-size(16px, 24px);
+}

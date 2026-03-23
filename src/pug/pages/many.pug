@@ -1,0 +1,9 @@
+extends ../components/layouts/main-layout
+
+block variables
+  -
+    title = 'Мульти-блок'
+
+block main
+  +hero-section({ items: categoriesData2 })
+  +hero-section({ items: categoriesData3 })

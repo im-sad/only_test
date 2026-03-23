@@ -1,0 +1,87 @@
+// Base
+$width: 1440px;
+// $url-img: '../img/bg'; - MOVED TO vite.config.js
+$url-font: '/assets/fonts';
+
+// Colors
+$colors: (
+  'white': #fff,
+  'black': #000,
+  'bg': #f4f5f9,
+  'bd': #303e58,
+  'bd-light': #c7cdd9,
+  'blue': #3877ee,
+  'black-blue': #42567a,
+  'light-blue': #9dbefd,
+  'fuchsia-100': #ef5da8,
+  'fuchsia-80': #f178b6,
+  'iris-100': #5d5fef
+);
+
+$space: (
+  'xs': 2px,
+  'sm': 4px,
+  'md': 8px,
+  'lg': 16px,
+  'xl': 24px,
+  'xxl': 32px
+);
+
+// Transitions (https://easings.net/ru)
+$trans: (
+  'fast': 0.1s ease,
+  'base': 0.3s ease,
+  'fade': 0.4s ease,
+  'long': 0.5s ease
+);
+
+$shadows: (
+  'block': '0 0 1px #000'
+);
+
+$zindex: (
+  'modal': 999,
+  'header': 99,
+  'menu': 98
+);
+
+$field: (
+  'sm': 40px,
+  'md': 50px
+);
+
+// Safe font-family
+$font-Arial: 'Arial', 'Helvetica CY', 'Nimbus Sans L', system-ui, sans-serif;
+$font-ArialBlack: 'Arial Black', 'Helvetica CY', 'Nimbus Sans L', system-ui, sans-serif;
+$font-ComicSans: 'Comic Sans MS', 'Monaco CY', cursive;
+$font-Courier: 'Courier New', 'Nimbus Mono L', monospace;
+$font-Georgia: 'Georgia', 'Century Schoolbook L', serif;
+$font-Impact: 'Impact', 'Charcoal CY', system-ui, sans-serif;
+$font-LucidaConsole: 'Lucida Console', 'Monaco', monospace;
+$font-LucidaSans: 'Lucida Sans Unicode', 'Lucida Grande', system-ui, sans-serif;
+$font-Palatino: 'Palatino Linotype', 'Book Antiqua', 'Palatino', serif;
+$font-Tahoma: 'Tahoma', 'Geneva CY', system-ui, sans-serif;
+$font-TimesNew: 'Times New Roman', 'Times CY', 'Nimbus Roman No9 L', serif;
+$font-Trebuchet: 'Trebuchet MS', 'Helvetica CY', system-ui, sans-serif;
+$font-Verdana: 'Verdana', 'Geneva CY', 'DejaVu Sans', system-ui, sans-serif;
+
+// Font
+$font-family: 'PT Sans', $font-Arial;
+$font-title-family: 'Bebas Neue', $font-Trebuchet;
+$font-base-size: 16px;
+$font-base-lh: 1.25;
+
+// Media
+$media-fullhd: 1920px;
+$media-quadhd: 1440px;
+$media-hd: 1280px;
+$media-desktop: 1024px;
+$media-notebook: 960px;
+$media-tablet: 768px;
+$media-smartphone: 620px;
+$media-phone: 480px;
+$media-last: 375px;
+
+// Retina
+$retina-dpi: 144dpi;
+$retina-dppx: 1.5dppx;

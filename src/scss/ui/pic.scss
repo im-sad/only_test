@@ -1,0 +1,12 @@
+.pic {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+    height: auto;
+  }
+}

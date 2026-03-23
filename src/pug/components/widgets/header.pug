@@ -1,0 +1,12 @@
+mixin header(props = {})
+
+  header.header#header(class=props.mod && `header--${props.mod}`)
+    .width
+
+      .header__core
+        nav.header__menu
+          each item in dataMenu || []
+            a(
+              href=item.href
+              class=item.href === currentUrl && 'is-active'
+            )!=item.title

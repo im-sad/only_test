@@ -1,0 +1,110 @@
+.history-point {
+  @include square(rem(56));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  translate: -50% -50%;
+  z-index: 9;
+  transform: rotate(calc(var(--angel, 0deg) * -1));
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform var(--trans-long), left var(--trans-long), top var(--trans-long);
+  color: transparent;
+  user-select: none;
+
+  &:hover,
+  &.is-active {
+    color: var(--color-black-blue);
+  }
+
+  &.is-active {
+    pointer-events: none;
+  }
+
+  &::before {
+    @include square(rem(6));
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    background: var(--color-black-blue);
+    // border: 1px solid rgba(color('bd'), 0.5);
+    border-radius: 50%;
+    transition: width var(--trans-base), height var(--trans-base), background var(--trans-fade);
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  &:hover::before,
+  &.is-active::before {
+    @include square(rem(56));
+    background: var(--color-bg);
+    border: 1px solid rgba(color('bd'), 0.5);
+  }
+
+  &__num {
+    font-size: rem(20);
+    line-height: 1;
+    transition: color var(--trans-long), transform var(--trans-fade);
+  }
+
+  &__text {
+    @include textBase;
+    font-weight: 700;
+    color: var(--color-black-blue);
+    position: absolute;
+    left: calc(100% + #{rem(20)});
+    top: 50%;
+    translate: 0% -50%;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity var(--trans-base), transform var(--trans-base);
+    transition-delay: 0s;
+  }
+
+  &.is-active &__text {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity var(--trans-fade), transform var(--trans-fade);
+    transition-delay: 0.8s;
+  }
+
+  // MEDIA
+  @include media(tablet-after) {
+    inline-size: unset;
+    block-size: unset;
+    position: static;
+    transform: unset;
+    border: unset;
+    display: block;
+    grid-area: 1 / 1;
+    min-width: 1px;
+    opacity: 0;
+    translate: rem(-20) 0;
+    transition: opacity var(--trans-long), translate var(--trans-long);
+
+    &.is-active {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    &::before {
+      content: none;
+    }
+
+    &__num {
+      display: none;
+    }
+
+    &__text {
+      color: inherit;
+      opacity: 1;
+      position: static;
+    }
+  }
+}
