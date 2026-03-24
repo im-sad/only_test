@@ -3,7 +3,6 @@
 
 :root {
   --width: #{rem($width)};
-  --scale-vw: calc(#{f.strip-unit(v.$media-fullhd)} / 100);
 
   --font-family: #{v.$font-family};
   --font-title-family: #{v.$font-title-family};
@@ -32,35 +31,6 @@
 
   @each $name, $z in v.$zindex {
     --z-#{$name}: #{$z};
-  }
-
-  // MEDIA
-  @include media(quadhd) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-quadhd)} / 100);
-  }
-
-  @include media(hd) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-hd)} / 100);
-  }
-
-  @include media(desktop) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-desktop)} / 100);
-  }
-
-  @include media(notebook) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-notebook)} / 100);
-  }
-
-  @include media(tablet) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-tablet)} / 100);
-  }
-
-  @include media(smartphone) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-smartphone)} / 100);
-  }
-
-  @include media(phone) {
-    --scale-vw: calc(#{f.strip-unit(v.$media-phone)} / 100);
   }
 }
 

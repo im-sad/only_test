@@ -52,18 +52,7 @@ $field: (
 
 // Safe font-family
 $font-Arial: 'Arial', 'Helvetica CY', 'Nimbus Sans L', system-ui, sans-serif;
-$font-ArialBlack: 'Arial Black', 'Helvetica CY', 'Nimbus Sans L', system-ui, sans-serif;
-$font-ComicSans: 'Comic Sans MS', 'Monaco CY', cursive;
-$font-Courier: 'Courier New', 'Nimbus Mono L', monospace;
-$font-Georgia: 'Georgia', 'Century Schoolbook L', serif;
-$font-Impact: 'Impact', 'Charcoal CY', system-ui, sans-serif;
-$font-LucidaConsole: 'Lucida Console', 'Monaco', monospace;
-$font-LucidaSans: 'Lucida Sans Unicode', 'Lucida Grande', system-ui, sans-serif;
-$font-Palatino: 'Palatino Linotype', 'Book Antiqua', 'Palatino', serif;
-$font-Tahoma: 'Tahoma', 'Geneva CY', system-ui, sans-serif;
-$font-TimesNew: 'Times New Roman', 'Times CY', 'Nimbus Roman No9 L', serif;
 $font-Trebuchet: 'Trebuchet MS', 'Helvetica CY', system-ui, sans-serif;
-$font-Verdana: 'Verdana', 'Geneva CY', 'DejaVu Sans', system-ui, sans-serif;
 
 // Font
 $font-family: 'PT Sans', $font-Arial;
@@ -80,7 +69,7 @@ $media-notebook: 960px;
 $media-tablet: 768px;
 $media-smartphone: 620px;
 $media-phone: 480px;
-$media-last: 375px;
+$media-last: 320px;
 
 // Retina
 $retina-dpi: 144dpi;
