@@ -32,7 +32,7 @@ jobs:
       run: mkdir ~/.lftp && echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
 
     - name: 🔑 Load Secrets
-      run: echo "machine ${{ secrets.FTP_HOST }} login ${{ secrets.FTP_NAME }} password ${{ secrets.FTP_PASS }}" > ~/.netrc
+      run: echo "machine login ${{ secrets.FTP_NAME }} password ${{ secrets.FTP_PASS }}" > ~/.netrc
 
     - name: 📁 Upload Folder
       run: |
