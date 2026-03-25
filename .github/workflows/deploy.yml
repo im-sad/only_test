@@ -22,7 +22,7 @@ jobs:
 
     - name: 🔨Build&test
       run: |
-        bun install
+        npm install
         npm run build
 
     - name: 📦 Get LFTP
