@@ -26,15 +26,17 @@ jobs:
         npm run build
 
     - name: 📦 Get LFTP
-      run: sudo apt install lftp
+      run: sudo apt-get update && sudo apt-get install -y lftp
 
     - name: 🛠️ Configure LFTP
-      run: mkdir ~/.lftp && echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
+      run: mkdir -p ~/.lftp && echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
 
     - name: 🔑 Load Secrets
-      run: echo "machine login ${{ secrets.FTP_NAME }} password ${{ secrets.FTP_PASS }}" > ~/.netrc
+      run: |
+        printf 'machine %s login %s password %s\n' '${{ secrets.FTP_HOST }}' '${{ secrets.FTP_NAME }}' '${{ secrets.FTP_PASS }}' > ~/.netrc
+        chmod 600 ~/.netrc
 
     - name: 📁 Upload Folder
       run: |
-        echo "Updload to /imsady6f.beget.tech/public_html/"
-        lftp -d -e "set ftp:ssl-allow no; mirror --parallel=100 --only-newer --overwrite -R ./build/ /imsady6f.beget.tech/public_html/" ${{ secrets.FTP_HOST }}
+        echo "Upload to public_html/"
+        lftp -d -e "set ftp:ssl-allow no; mirror --parallel=100 --only-newer --overwrite -R ./build/ public_html/" ${{ secrets.FTP_HOST }}
