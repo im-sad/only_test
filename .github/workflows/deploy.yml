@@ -1,0 +1,40 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: 🔨Build&test
+      run: |
+        bun install
+        npm run build
+
+    - name: 📦 Get LFTP
+      run: sudo apt install lftp
+
+    - name: 🛠️ Configure LFTP
+      run: mkdir ~/.lftp && echo "set ssl:verify-certificate false;" >> ~/.lftp/rc
+
+    - name: 🔑 Load Secrets
+      run: echo "machine ${{ secrets.FTP_HOST }} login ${{ secrets.FTP_NAME }} password ${{ secrets.FTP_PASS }}" > ~/.netrc
+
+    - name: 📁 Upload Folder
+      run: |
+        echo "Updload to /imsady6f.beget.tech/public_html/"
+        lftp -d -e "set ftp:ssl-allow no; mirror --parallel=100 --only-newer --overwrite -R ./local/html/build/ /imsady6f.beget.tech/public_html/" ${{ secrets.FTP_HOST }}
